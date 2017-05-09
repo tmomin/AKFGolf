@@ -18,3 +18,6 @@ Route::get('/', function () {
 Route::get('demo', function () {
     return view('demo');
 });
+
+Route::get('checkin/new', 'AKFGolfController@create');
+Route::resource('checkin', 'AKFGolfController');
