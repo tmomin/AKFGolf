@@ -3,8 +3,19 @@
 @section('title', 'Add New Player')
 
 @section('content')
-
-    <link rel="stylesheet" href="https://szimek.github.io/signature_pad/css/signature-pad.css">
+    <link rel="stylesheet" href="http://szimek.github.io/signature_pad/css/signature-pad.css">
+    <link href="//www.fuelcdn.com/fuelux/3.6.3/css/fuelux.min.css" rel="stylesheet">
+    <style>
+        .m-signature-pad--footer
+        .button.cancel {
+            height:20px;
+            width:50px;
+            margin: -20px -25px;
+            position:relative;
+            top:100%;
+            left:50%;
+        }
+    </style>
 
     <div class="container theme-showcase" role="main">
 
@@ -16,41 +27,40 @@
                     <input class="form-control" type="text" id="firstName">
                     <label for="lastName">Last Name</label>
                     <input class="form-control" type="text" id="lastName">
+                    @include('partial.datepicker')
                 </div>
             </form>
             <h1>Welcome to AKF Golf 2017</h1>
             <p>This site is to be used to check players on the of the tournament.</p>
-
             <div id="signature-pad" class="m-signature-pad">
                 <div class="m-signature-pad--body">
                     <canvas></canvas>
                 </div>
                 <div class="m-signature-pad--footer">
-                    <div class="description">Sign above</div>
+                    <button type="button" class="button cancel">Cancel</button>
                     <button type="button" class="button clear" data-action="clear">Clear</button>
                     <button type="button" class="button save" data-action="save">Save</button>
                 </div>
             </div>
-            <p><button id="clear" class="btn btn-info">Clear</button></p>
+            <p><button id="signnow" class="btn btn-info">Sign Now</button></p>
         </div>
 
     </div> <!-- /container -->
 
 @endsection
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/signature_pad/1.5.3/signature_pad.min.js"></script>
+<script src="http://szimek.github.io/signature_pad/js/signature_pad.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-<script src="https://szimek.github.io/signature_pad/js/app.js"></script>
 
 <script type="text/javascript">
     $(function() {
-        var signaturePad = new SignaturePad(document.getElementById('signature-pad'), {
-            backgroundColor: 'rgba(255, 255, 255, 1)',
-            penColor: 'rgb(0, 0, 0)'
-        });
-        var cancelButton = document.getElementById('clear');
-        cancelButton.addEventListener('click', function (event) {
-            signaturePad.clear();
-        });
-    })
+        $('#signature-pad').hide();
+        $('#signnow').click(function () {
+            $('#signature-pad').show();
+            $.getScript("../js/akfgolf.js");
+        })
+        $('.cancel').click(function () {
+            $('#signature-pad').hide();
+        })
+    });
 </script>

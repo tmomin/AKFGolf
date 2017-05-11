@@ -34,7 +34,7 @@
     <![endif]-->
 </head>
 
-<body>
+<body class="fuelux">
 
 <!-- Fixed navbar -->
 <nav class="navbar navbar-inverse navbar-fixed-top">
@@ -87,5 +87,6 @@
 <script src="http://getbootstrap.com/assets/js/docs.min.js"></script>
 <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
 <script src="http://getbootstrap.com/assets/js/ie10-viewport-bug-workaround.js"></script>
+<script src="//www.fuelcdn.com/fuelux/3.6.3/js/fuelux.min.js"></script>
 </body>
 </html>
