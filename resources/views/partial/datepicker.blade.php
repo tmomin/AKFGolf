@@ -3,7 +3,7 @@
         <label class="control-label" for="myDatepickerInput">Date of Birth</label>
         <div>
             <div class="datepicker" data-initialize="datepicker" id="myDatepicker">
-                <div class="input-group">
+                <div class>
                     <input class="form-control" id="myDatepickerInput" type="text">
                     <div class="input-group-btn">
                         <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
