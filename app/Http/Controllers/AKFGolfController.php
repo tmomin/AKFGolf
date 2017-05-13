@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use DB;
+use App\Player;
 use Illuminate\Http\Request;
 
 class AKFGolfController extends Controller
@@ -34,7 +36,8 @@ class AKFGolfController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $players = Player::where('firstName', $request)->get();
+        return view('results', compact('players'));
     }
 
     /**
@@ -45,7 +48,7 @@ class AKFGolfController extends Controller
      */
     public function show($id)
     {
-        //
+        return "show";
     }
 
     /**
@@ -56,7 +59,7 @@ class AKFGolfController extends Controller
      */
     public function edit($id)
     {
-        //
+        return "edit";
     }
 
     /**
@@ -68,7 +71,7 @@ class AKFGolfController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        return "update";
     }
 
     /**

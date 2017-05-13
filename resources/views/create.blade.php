@@ -27,7 +27,11 @@
                     <input class="form-control" type="text" id="firstName">
                     <label for="lastName">Last Name</label>
                     <input class="form-control" type="text" id="lastName">
-                    @include('partial.datepicker')
+                    {{--@include('partial.datepicker')--}}
+                    <label for="email">Email</label>
+                    <input class="form-control" type="email" id="email">
+                    <label for="phone">Phone</label>
+                    <input class="form-control" type="phone" id="phone">
                 </div>
             </form>
             <h1>Welcome to AKF Golf 2017</h1>

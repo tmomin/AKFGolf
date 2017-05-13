@@ -17,16 +17,11 @@ class CreatePlayersTable extends Migration
             $table->increments('id');
             $table->string('firstName');
             $table->string('lastName');
-            $table->string('dob');
-            $table->char('gender');
-            $table->string('employer');
-            $table->integer('addressId');
+            $table->integer('companyId');
             $table->string('email');
-            $table->string('emergencyName');
-            $table->string('emergencyPhone');
-            $table->string('waiverSign');
-            $table->dateTime('waiverTime');
-            $table->integer('passbook');
+            $table->string('waiverSign')->nullable();
+            $table->dateTime('waiverTime')->nullable();
+            $table->integer('teamId');
             $table->timestamps();
         });
     }
