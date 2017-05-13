@@ -12,7 +12,7 @@
         <p>This site is to be used to check players on the of the tournament.</p>
 
         <div class="form-group">
-            <form class="form-horizontal" method="post" action="{{ url('checkin') }}">
+            <form class="form-horizontal" method="post" action="{{ url('/checkin') }}">
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                 <label for="search">Search by players name</label>
                 <input class="form-control" type="text" id="search"><br>

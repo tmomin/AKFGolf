@@ -36,8 +36,8 @@ class AKFGolfController extends Controller
      */
     public function store(Request $request)
     {
-        $players = Player::where('firstName', $request)->get();
-        return view('results', compact('players'));
+        $player = Player::where('firstName', $request)->get();
+        return view('results', compact('player'));
     }
 
     /**

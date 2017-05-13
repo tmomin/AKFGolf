@@ -27,7 +27,6 @@
                     <input class="form-control" type="text" id="firstName">
                     <label for="lastName">Last Name</label>
                     <input class="form-control" type="text" id="lastName">
-                    {{--@include('partial.datepicker')--}}
                     <label for="email">Email</label>
                     <input class="form-control" type="email" id="email">
                     <label for="phone">Phone</label>
