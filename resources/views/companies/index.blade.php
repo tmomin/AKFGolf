@@ -1,17 +1,50 @@
 @extends('layouts.app')
 
-@section('title', 'Search')
+@section('title', 'List Companies')
 
 @section('content')
-
     <div class="container theme-showcase" role="main">
 
         <!-- Main jumbotron for a primary marketing message or call to action -->
         <div class="jumbotron">
             <h1>Welcome to AKF Golf 2017</h1>
             <p>This site is to be used to check players on the of the tournament.</p>
+        </div>
 
-
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <table class="table table-striped table-hover">
+                    <thead>
+                    <tr>
+                        {{--<th>#</th>--}}
+                        <th>Company Name</th>
+                        <th>Sponsorship Level</th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    @foreach($companies as $company)
+                        <tr>
+                            {{--<td>{{ $company->id }}</td>--}}
+                            <td>{{ $company->companyName }}</td>
+                            <td>{{ $company->sponsor->name }}</td>
+                            <td><a href="{{ route('companies.edit', $company->id) }}">Edit</a></td>
+                            {{--<td><a href="{{ url('/sponsors', [$company->id]) }}">Edit</a></td>--}}
+                            {{--<td><a href="{{ url('/sponsors', [$company->id]) }}" data-method="DELETE" data-confirm="Are you sure?" data-token="{{csrf_token()}}>Delete</a></td>--}}
+                            <td>
+                                <a data-method="delete" style="cursor:pointer;" onclick="$(this).find('form').submit();">Delete
+                                    <form action="{{ URL::route('companies.destroy',$company['id']) }}" method="POST">
+                                        <input type="hidden" name="_method" value="DELETE">
+                                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                    </form>
+                                </a>
+                            </td>
+                        </tr>
+                    @endforeach
+                    </tbody>
+                </table>
+            </div>
         </div>
 
     </div> <!-- /container -->

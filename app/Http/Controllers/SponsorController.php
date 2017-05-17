@@ -6,7 +6,7 @@ use App\Sponsor;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 
-class SponsorsController extends Controller
+class SponsorController extends Controller
 {
     /**
      * Display a listing of the resource.

@@ -16,7 +16,7 @@
                 <table class="table table-striped table-hover">
                     <thead>
                     <tr>
-                        <th>#</th>
+                        {{--<th>#</th>--}}
                         <th>Name</th>
                         <th>Dollar Amount</th>
                         <th>Number of Players</th>
@@ -27,7 +27,7 @@
                     <tbody>
                     @foreach($sponsors as $sponsor)
                         <tr>
-                            <td>{{ $sponsor->id }}</td>
+                            {{--<td>{{ $sponsor->id }}</td>--}}
                             <td>{{ $sponsor->name }}</td>
                             <td>${{ $sponsor->dollarAmount }}</td>
                             <td>{{ $sponsor->numOfPlayers }}</td>
