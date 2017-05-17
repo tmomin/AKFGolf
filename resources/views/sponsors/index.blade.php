@@ -1,11 +1,8 @@
 @extends('layouts.app')
 
-@section('title', 'Search')
+@section('title', 'List Sponsors')
 
 @section('content')
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <script src="/js/laravel.js"></script>
-
     <div class="container theme-showcase" role="main">
 
         <!-- Main jumbotron for a primary marketing message or call to action -->
@@ -34,8 +31,17 @@
                             <td>{{ $sponsor->name }}</td>
                             <td>${{ $sponsor->dollarAmount }}</td>
                             <td>{{ $sponsor->numOfPlayers }}</td>
-                            <td><a href="{{ url('/sponsors', [$sponsor->id]) }}">Edit</a></td>
-                            <td><a href="{{ url('/sponsors', [$sponsor->id]) }}" data-method="delete" data-confirm="Are you sure?">Delete</a></td>
+                            <td><a href="{{ route('sponsors.edit', $sponsor->id) }}">Edit</a></td>
+                            {{--<td><a href="{{ url('/sponsors', [$sponsor->id]) }}">Edit</a></td>--}}
+                            {{--<td><a href="{{ url('/sponsors', [$sponsor->id]) }}" data-method="DELETE" data-confirm="Are you sure?" data-token="{{csrf_token()}}>Delete</a></td>--}}
+                            <td>
+                                <a data-method="delete" style="cursor:pointer;" onclick="$(this).find('form').submit();">Delete
+                                    <form action="{{ URL::route('sponsors.destroy',$sponsor['id']) }}" method="POST">
+                                        <input type="hidden" name="_method" value="DELETE">
+                                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                    </form>
+                                </a>
+                            </td>
                         </tr>
                     @endforeach
                     </tbody>

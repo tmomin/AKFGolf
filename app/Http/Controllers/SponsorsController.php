@@ -55,7 +55,7 @@ class SponsorsController extends Controller
      */
     public function show($id)
     {
-        //
+        return "show";
     }
 
     /**
@@ -66,7 +66,8 @@ class SponsorsController extends Controller
      */
     public function edit($id)
     {
-        //
+        $sponsor = Sponsor::findOrFail($id);
+        return view('sponsors.edit', compact('sponsor'));
     }
 
     /**
@@ -78,7 +79,19 @@ class SponsorsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $sponsor = Sponsor::findOrFail($id);
+
+        $this->validate($request, [
+            'name' => 'required',
+            'dollarAmount' => 'required',
+            'numOfPlayers' => 'required'
+        ]);
+
+        $input = $request->all();
+
+        $sponsor->fill($input)->save();
+
+        return Redirect::route('sponsors.index');
     }
 
     /**
@@ -89,6 +102,7 @@ class SponsorsController extends Controller
      */
     public function destroy($id)
     {
-        return "destroy";
+        Sponsor::findOrFail($id)->delete();
+        return Redirect::route('sponsors.index');
     }
 }
