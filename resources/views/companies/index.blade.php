@@ -4,6 +4,11 @@
 
 @section('content')
     <div class="container theme-showcase" role="main">
+        <div class="has-error">
+            @if(Session::has('flash_message'))
+                <div class="alert alert-danger"><em> {{ session('flash_message') }}</em></div>
+            @endif
+        </div>
 
         <!-- Main jumbotron for a primary marketing message or call to action -->
         <div class="jumbotron">
@@ -28,7 +33,7 @@
                         <tr>
                             {{--<td>{{ $company->id }}</td>--}}
                             <td>{{ $company->companyName }}</td>
-                            <td>${{ $company->sponsor->name }}</td>
+                            <td>{{ $company->sponsor->name }}</td>
                             <td><a href="{{ route('companies.edit', $company->id) }}">Edit</a></td>
                             {{--<td><a href="{{ url('/sponsors', [$company->id]) }}">Edit</a></td>--}}
                             {{--<td><a href="{{ url('/sponsors', [$company->id]) }}" data-method="DELETE" data-confirm="Are you sure?" data-token="{{csrf_token()}}>Delete</a></td>--}}
@@ -45,29 +50,22 @@
                     </tbody>
                 </table>
             </div>
-            <div class="row col-md-12 col-md-offset-1">
-                <form class="form-inline" method="post" action="{{ url('/sponsors') }}">
+            <div class="row col-md-8 col-md-offset-3">
+                <form class="form-inline" method="post" action="{{ url('/companies') }}">
                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
                     <div class="form-group">
-                        <label class="sr-only" for="name">Name</label>
-                        <input type="text" class="form-control" id="name" name="name" placeholder="Name" required>
+                        <label class="sr-only" for="companyName">Company Name</label>
+                        <input type="text" class="form-control" id="companyName" name="companyName" placeholder="Company Name" required>
                     </div>
                     <div class="form-group">
-                        <label class="sr-only" for="dollarAmount">$ Amount</label>
-                        <div class="input-group">
-                            <div class="input-group-addon">$</div>
-                            <input type="text" class="form-control" id="dollarAmount" name="dollarAmount" placeholder="Amount" required>
-                        </div>
+                        <label class="sr-only" for="sponsorshipLevel">Sponsorship Level</label>
+                        <select class="form-control" id="sponsorshipLevel" name="sponsorshipLevel" required>
+                            @foreach($sponsors as $sponsor)
+                                <option value="{{ $sponsor->id }}">{{ $sponsor->name }}</option>
+                            @endforeach
+                        </select>
                     </div>
-                    <div class="form-group">
-                        <label class="sr-only" for="numberOfGolfPlayers"># of Golf Players</label>
-                        <input type="text" class="form-control" id="numberOfGolfPlayers" name="numOfGolfPlayers" placeholder="Number of Golf Players" required>
-                    </div>
-                    <div class="form-group">
-                        <label class="sr-only" for="numOfAwardTickets"># of Award Tickets</label>
-                        <input type="text" class="form-control" id="numOfAwardTickets" name="numOfAwardTickets" placeholder="Number of Award Tickets" required>
-                    </div>
-                    <button type="submit" class="btn btn-primary">Add Sponsorship</button>
+                    <button type="submit" class="btn btn-primary">Add Company</button>
                 </form>
             </div>
         </div>

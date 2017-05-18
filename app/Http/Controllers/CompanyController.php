@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Company;
 use App\Sponsor;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Database\QueryException;
 
 class CompanyController extends Controller
 {
@@ -28,7 +30,9 @@ class CompanyController extends Controller
      */
     public function create()
     {
-        //
+        $sponsors = Sponsor::all();
+
+        return view('companies.create', compact('sponsors'));
     }
 
     /**
@@ -39,7 +43,20 @@ class CompanyController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        try {
+            $company = new Company();
+            $company->companyName = $request->companyName;
+            $company->sponsorId = $request->sponsorshipLevel;
+            $company->save();
+            $result = Sponsor::findOrFail($request->sponsorshipLevel)->numOfGolfPlayers;
+            \Session::flash('flash_message', $result);
+        } catch (QueryException $e) {
+            \Session::flash('flash_message','Duplicate Company Entry. Please Try Again.');
+            return Redirect::route('companies.index');
+        }
+
+
+        return Redirect::route('companies.index');
     }
 
     /**
