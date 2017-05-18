@@ -16,18 +16,25 @@
             <form class="form-inline" method="post" action="{{ url('/sponsors') }}">
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                 <div class="form-group">
-                    <label for="name">Name</label>
-                    <input type="text" class="form-control" id="name" name="name">
+                    <label class="sr-only" for="name">Name</label>
+                    <input type="text" class="form-control" id="name" name="name" placeholder="Name" required>
                 </div>
                 <div class="form-group">
-                    <label for="dollarAmount">Dollar Amount</label>
-                    <input type="text" class="form-control" id="dollarAmount" name="dollarAmount">
+                    <label class="sr-only" for="dollarAmount">$ Amount</label>
+                    <div class="input-group">
+                        <div class="input-group-addon">$</div>
+                        <input type="text" class="form-control" id="dollarAmount" name="dollarAmount" placeholder="Dollar Amount" required>
+                    </div>
                 </div>
                 <div class="form-group">
-                    <label for="numberOfPlayers">Number of Players</label>
-                    <input type="text" class="form-control" id="numberOfPlayers" name="numOfPlayers">
+                    <label class="sr-only" for="numberOfGolfPlayers"># of Golf Players</label>
+                    <input type="text" class="form-control" id="numberOfGolfPlayers" name="numOfGolfPlayers" placeholder="Number of Golf Players" required>
                 </div>
-                <button type="submit" class="btn btn-default">Add</button>
+                <div class="form-group">
+                    <label class="sr-only" for="numOfAwardTickets"># of Award Tickets</label>
+                    <input type="text" class="form-control" id="numOfAwardTickets" name="numOfAwardTickets" placeholder="Number of Award Tickets" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Add Sponsorship</button>
             </form>
         </div>
 

@@ -6,7 +6,7 @@ use App\Sponsor;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 
-class SponsorsController extends Controller
+class SponsorController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -41,7 +41,8 @@ class SponsorsController extends Controller
         $sponsor = new Sponsor();
         $sponsor->name = $request->name;
         $sponsor->dollarAmount = $request->dollarAmount;
-        $sponsor->numOfPlayers = $request->numOfPlayers;
+        $sponsor->numOfGolfPlayers = $request->numOfGolfPlayers;
+        $sponsor->numOfAwardTickets = $request->numOfAwardTickets;
         $sponsor->save();
 
         return Redirect::route('sponsors.index');

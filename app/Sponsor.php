@@ -7,6 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 class Sponsor extends Model
 {
     protected $fillable = [
-        'name', 'dollarAmount', 'numOfPlayers',
+        'name', 'dollarAmount', 'numOfGolfPlayers', 'numOfAwardTickets',
     ];
 }

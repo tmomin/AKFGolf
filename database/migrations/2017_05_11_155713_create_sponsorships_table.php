@@ -17,7 +17,8 @@ class CreateSponsorshipsTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->integer('dollarAmount');
-            $table->integer('numOfPlayers');
+            $table->integer('numOfGolfPlayers');
+            $table->integer('numOfAwardTickets');
             $table->timestamps();
         });
     }

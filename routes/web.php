@@ -22,4 +22,5 @@ Route::get('demo', function () {
 //Route::get('checkin/new', 'AKFGolfController@create');
 //Route::resource('checkin', 'AKFGolfController');
 
-Route::resource('sponsors', 'SponsorsController');
+Route::resource('sponsors', 'SponsorController');
+Route::resource('companies', 'CompanyController');

@@ -12,6 +12,6 @@ class Company extends Model
 
     public function sponsor()
     {
-        return $this->hasOne('App\Sponsor');
+        return $this->belongsTo('App\Sponsor', 'sponsorId');
     }
 }

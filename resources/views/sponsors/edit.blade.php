@@ -18,18 +18,25 @@
                 <input type="hidden" name="_method" value="PATCH">
                 <input type="hidden" name="id" value="{{ $sponsor->id }}">
                 <div class="form-group">
-                    <label for="name">Name</label>
-                    <input type="text" class="form-control" id="name" name="name" value="{{ $sponsor->name }}">
+                    <label class="sr-only" for="name">Name</label>
+                    <input type="text" class="form-control" id="name" name="name" placeholder="Name" required value="{{ $sponsor->name }}">
                 </div>
                 <div class="form-group">
-                    <label for="dollarAmount">Dollar Amount</label>
-                    <input type="text" class="form-control" id="dollarAmount" name="dollarAmount" value="{{ $sponsor->dollarAmount }}">
+                    <label class="sr-only" for="dollarAmount">$ Amount</label>
+                    <div class="input-group">
+                        <div class="input-group-addon">$</div>
+                        <input type="text" class="form-control" id="dollarAmount" name="dollarAmount" placeholder="Dollar Amount" required value="{{ $sponsor->dollarAmount }}">
+                    </div>
                 </div>
                 <div class="form-group">
-                    <label for="numberOfPlayers">Number of Players</label>
-                    <input type="text" class="form-control" id="numberOfPlayers" name="numOfPlayers" value="{{ $sponsor->numOfPlayers }}">
+                    <label class="sr-only" for="numberOfGolfPlayers"># of Golf Players</label>
+                    <input type="text" class="form-control" id="numberOfGolfPlayers" name="numOfGolfPlayers" placeholder="Number of Golf Players" required value="{{ $sponsor->numOfGolfPlayers }}">
                 </div>
-                <button type="submit" class="btn btn-default">Edit</button>
+                <div class="form-group">
+                    <label class="sr-only" for="numOfAwardTickets"># of Award Tickets</label>
+                    <input type="text" class="form-control" id="numOfAwardTickets" name="numOfAwardTickets" placeholder="Number of Award Tickets" required value="{{ $sponsor->numOfAwardTickets }}">
+                </div>
+                <button type="submit" class="btn btn-primary">Edit Sponsorship</button>
             </form>
         </div>
 

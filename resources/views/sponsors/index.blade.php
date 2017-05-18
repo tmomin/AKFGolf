@@ -16,10 +16,11 @@
                 <table class="table table-striped table-hover">
                     <thead>
                     <tr>
-                        <th>#</th>
+                        {{--<th>#</th>--}}
                         <th>Name</th>
                         <th>Dollar Amount</th>
-                        <th>Number of Players</th>
+                        <th># of Golf Players</th>
+                        <th># of Award Tickets</th>
                         <th></th>
                         <th></th>
                     </tr>
@@ -27,10 +28,11 @@
                     <tbody>
                     @foreach($sponsors as $sponsor)
                         <tr>
-                            <td>{{ $sponsor->id }}</td>
+                            {{--<td>{{ $sponsor->id }}</td>--}}
                             <td>{{ $sponsor->name }}</td>
                             <td>${{ $sponsor->dollarAmount }}</td>
-                            <td>{{ $sponsor->numOfPlayers }}</td>
+                            <td>{{ $sponsor->numOfGolfPlayers }}</td>
+                            <td>{{ $sponsor->numOfAwardTickets }}</td>
                             <td><a href="{{ route('sponsors.edit', $sponsor->id) }}">Edit</a></td>
                             {{--<td><a href="{{ url('/sponsors', [$sponsor->id]) }}">Edit</a></td>--}}
                             {{--<td><a href="{{ url('/sponsors', [$sponsor->id]) }}" data-method="DELETE" data-confirm="Are you sure?" data-token="{{csrf_token()}}>Delete</a></td>--}}
@@ -46,6 +48,31 @@
                     @endforeach
                     </tbody>
                 </table>
+            </div>
+            <div class="row col-md-12 col-md-offset-1">
+                <form class="form-inline" method="post" action="{{ url('/sponsors') }}">
+                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                    <div class="form-group">
+                        <label class="sr-only" for="name">Name</label>
+                        <input type="text" class="form-control" id="name" name="name" placeholder="Name" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="sr-only" for="dollarAmount">$ Amount</label>
+                        <div class="input-group">
+                            <div class="input-group-addon">$</div>
+                            <input type="text" class="form-control" id="dollarAmount" name="dollarAmount" placeholder="Amount" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="sr-only" for="numberOfGolfPlayers"># of Golf Players</label>
+                        <input type="text" class="form-control" id="numberOfGolfPlayers" name="numOfGolfPlayers" placeholder="Number of Golf Players" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="sr-only" for="numOfAwardTickets"># of Award Tickets</label>
+                        <input type="text" class="form-control" id="numOfAwardTickets" name="numOfAwardTickets" placeholder="Number of Award Tickets" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Add Sponsorship</button>
+                </form>
             </div>
         </div>
 
