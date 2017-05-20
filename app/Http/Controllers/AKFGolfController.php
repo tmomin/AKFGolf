@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Company;
+use App\Team;
 use DB;
 use App\Player;
 use Illuminate\Http\Request;
+use spec\Prophecy\Promise\RequiredArgumentException;
 
 class AKFGolfController extends Controller
 {
@@ -13,9 +16,22 @@ class AKFGolfController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        return view('search');
+        $query = $request->search;
+
+        if ($query)
+        {
+            $results = Player::where('firstName', 'LIKE', $query)->orWhere('lastName', 'LIKE', $query)->get();
+            $teams = Team::all();
+            $companies = Company::all();
+
+            return view('search',compact('results', 'teams', 'companies'));
+        }
+
+        $results = null;
+
+        return view('search', compact('results'));
     }
 
     /**
@@ -36,8 +52,7 @@ class AKFGolfController extends Controller
      */
     public function store(Request $request)
     {
-        $player = Player::where('firstName', $request)->get();
-        return view('results', compact('player'));
+        //
     }
 
     /**

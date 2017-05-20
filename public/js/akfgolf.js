@@ -28,9 +28,33 @@ clearButton.addEventListener("click", function (event) {
 
 saveButton.addEventListener("click", function (event) {
     if (signaturePad.isEmpty()) {
-        alert("Please provide signature first.");
+        alert("Please provide signature first now.");
     } else {
         //window.open(signaturePad.toDataURL());
-        document.write(signaturePad.toData());
+        console.log('else');
+        $.ajax({
+            url : '/players/signature',
+            type: 'GET',
+            data : {
+                signature: signaturePad.toDataURL('image/png'),
+                //position: $('#position').val()
+                firstName: $('#firstName').val(),
+                lastName: $('#lastName').val(),
+                id: $('#id').val()
+            },
+            success: function(response)
+            {
+                //sweetAlert("Success!", "Good stuff! Your signature is now saved", "success");
+                setTimeout(function () {
+                    location.reload();
+                }, 3000);
+                //data - response from server
+            },
+            error: function(response)
+            {
+                //sweetAlert("Oops...", "Sorry, something went wrong! We will investigate as soon as possible.", "error");
+                console.log(response);
+            }
+        });
     }
 });

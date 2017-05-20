@@ -6,6 +6,9 @@ use App\Company;
 use App\Player;
 use App\Team;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Storage;
 
 class PlayerController extends Controller
 {
@@ -30,7 +33,10 @@ class PlayerController extends Controller
      */
     public function create()
     {
-        //
+        $companies = Company::all();
+        $teams = Team::all();
+
+        return view('players.create', compact('companies', 'teams'));
     }
 
     /**
@@ -41,7 +47,20 @@ class PlayerController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        try {
+            $player = new Player();
+            $player->firstName = $request->firstName;
+            $player->lastName = $request->lastName;
+            $player->companyId = $request->companyId;
+            $player->email = $request->email;
+            $player->teamId = $request->teamId;
+            $player->save();
+        } catch (QueryException $e) {
+            \Session::flash('flash_message','Duplicate Player Entry. Please Try Again.');
+            return Redirect::route('players.index');
+        }
+
+        return Redirect::route('players.index');
     }
 
     /**
@@ -63,7 +82,11 @@ class PlayerController extends Controller
      */
     public function edit($id)
     {
-        //
+        $player = Player::findOrFail($id);
+        $companies = Company::all();
+        $teams = Team::all();
+
+        return view('players.edit',compact('player','companies', 'teams'));
     }
 
     /**
@@ -75,7 +98,20 @@ class PlayerController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        try {
+            $player = Player::findOrFail($id);
+            $player->firstName = $request->firstName;
+            $player->lastName = $request->lastName;
+            $player->companyId = $request->companyId;
+            $player->email = $request->email;
+            $player->teamId = $request->teamId;
+            $player->save();
+        } catch (QueryException $e) {
+            \Session::flash('flash_message','Duplicate Player Entry. Please Try Again.');
+            return Redirect::route('players.index');
+        }
+
+        return Redirect::route('players.index');
     }
 
     /**
@@ -86,6 +122,27 @@ class PlayerController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Player::findOrFail($id)->delete();
+        return Redirect::route('players.index');
+    }
+
+    public function saveSignature(Redirect $request)
+    {
+//        $player = Player::findOrFail($request->id);
+//
+//        $data_uri = $request->signature;
+//        $encoded_image = explode(",", $data_uri)[1];
+//
+//        $sig = sha1($request->firstName.$request->lastName). "_signature.png";
+//        $folder = '/uploads/signatures/';
+//
+//        Storage::put($folder, $sig);
+//
+//        $player->waiverSign = $encoded_image;
+//        $player->save();
+//
+//        return back();
+
+        return ('Save Signature');
     }
 }

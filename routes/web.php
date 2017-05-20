@@ -11,17 +11,20 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+//Route::get('/', function () {
+//    return view('search');
+//});
 
 Route::get('demo', function () {
     return view('demo');
 });
 
-//Route::get('checkin/new', 'AKFGolfController@create');
-//Route::resource('checkin', 'AKFGolfController');
+Route::get('checkin/new', 'AKFGolfController@create');
+Route::resource('/', 'AKFGolfController');
 
 Route::resource('sponsors', 'SponsorController');
 Route::resource('companies', 'CompanyController');
+
+Route::get('players/signature', 'PlayerController@saveSignature');
 Route::resource('players', 'PlayerController');
+Route::resource('teams', 'TeamController');

@@ -21,7 +21,7 @@ class CreatePlayersTable extends Migration
             $table->string('email');
             $table->string('waiverSign')->nullable();
             $table->dateTime('waiverTime')->nullable();
-            $table->integer('teamId');
+            $table->integer('teamId')->nullable();
             $table->timestamps();
         });
     }

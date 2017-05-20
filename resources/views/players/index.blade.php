@@ -38,10 +38,10 @@
                             {{--<td>{{ $company->id }}</td>--}}
                             <td>{{ $player->firstName }}</td>
                             <td>{{ $player->lastName }}</td>
-                            <td>{{ $player->companyId }}</td>
+                            <td>{{ $player->company->companyName }}</td>
                             <td>{{ $player->email }}</td>
                             <td>{{ $player->waiverSign }}</td>
-                            <td>{{ $player->teamId }}</td>
+                            <td>@if($player->teamId == null) @else {{ $player->team->name }} @endif</td>
                             <td><a href="{{ route('players.edit', $player->id) }}">Edit</a></td>
                             {{--<td><a href="{{ url('/sponsors', [$company->id]) }}">Edit</a></td>--}}
                             {{--<td><a href="{{ url('/sponsors', [$company->id]) }}" data-method="DELETE" data-confirm="Are you sure?" data-token="{{csrf_token()}}>Delete</a></td>--}}
@@ -58,7 +58,7 @@
                     </tbody>
                 </table>
             </div>
-            <div class="row col-md-8 col-md-offset-3">
+            <div class="row col-md-11 col-md-offset-2">
                 <form class="form-inline" method="post" action="{{ url('/players') }}">
                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
                     <div class="form-group">
@@ -82,8 +82,9 @@
                         <input type="text" class="form-control" id="email" name="email" placeholder="email" required>
                     </div>
                     <div class="form-group">
-                        <label class="sr-only" for="teamid">Company</label>
-                        <select class="form-control" id="teamId" name="teamId" required>
+                        <label class="sr-only" for="teamid">Team</label>
+                        <select class="form-control" id="teamId" name="teamId">
+                            <option></option>
                             @foreach($teams as $team)
                                 <option value="{{ $team->id }}">{{ $team->name }}</option>
                             @endforeach
