@@ -85,7 +85,8 @@ class SponsorController extends Controller
         $this->validate($request, [
             'name' => 'required',
             'dollarAmount' => 'required',
-            'numOfPlayers' => 'required'
+            'numOfGolfPlayers' => 'required',
+            'numOfAwardTickets' => 'required',
         ]);
 
         $input = $request->all();

@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Company;
+use App\Player;
+use App\Team;
 use Illuminate\Http\Request;
 
 class PlayerController extends Controller
@@ -13,7 +16,11 @@ class PlayerController extends Controller
      */
     public function index()
     {
-        //
+        $players = Player::all();
+        $companies = Company::all();
+        $teams = Team::all();
+
+        return view('players.index', compact('players', 'companies', 'teams'));
     }
 
     /**

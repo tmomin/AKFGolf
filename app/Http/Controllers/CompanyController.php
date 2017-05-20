@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Company;
+use App\Player;
 use App\Sponsor;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Database\QueryException;
+use Illuminate\Support\Facades\Log;
 
 class CompanyController extends Controller
 {
@@ -45,17 +47,30 @@ class CompanyController extends Controller
     {
         try {
             $company = new Company();
+//            $player = new Player();
             $company->companyName = $request->companyName;
             $company->sponsorId = $request->sponsorshipLevel;
             $company->save();
-            $result = Sponsor::findOrFail($request->sponsorshipLevel)->numOfGolfPlayers;
-            \Session::flash('flash_message', $result);
         } catch (QueryException $e) {
             \Session::flash('flash_message','Duplicate Company Entry. Please Try Again.');
             return Redirect::route('companies.index');
         }
 
+//        $numOfGolfPlayers = Sponsor::findOrFail($request->sponsorshipLevel)->numOfGolfPlayers;
+//        $numOfAwardTickets = Sponsor::findOrFail($request->sponsorshipLevel)->numOfAwardTickets;
 
+//        if ($numOfGolfPlayers > 0) {
+//            for($i=1; $i<=$numOfGolfPlayers; $i++) {
+//                $data[] = new Player(array(
+//                    'firstName'=>'Player',
+//                    'lastName'=>'Name',
+//                    'companyId'=>1,
+//                    'email'=>'email@me.com',
+//                ));
+//            }
+//            Log::info($data);
+//            Player::create($data);
+//        }
         return Redirect::route('companies.index');
     }
 
@@ -78,7 +93,9 @@ class CompanyController extends Controller
      */
     public function edit($id)
     {
-        //
+        $company = Company::findOrFail($id);
+        $sponsors = Sponsor::all();
+        return view('companies.edit', compact('company', 'sponsors'));
     }
 
     /**
@@ -90,7 +107,18 @@ class CompanyController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $company = Company::findOrFail($id);
+
+        $this->validate($request, [
+            'companyName' => 'required',
+            'sponsorId' => 'required',
+        ]);
+
+        $input = $request->all();
+
+        $company->fill($input)->save();
+
+        return Redirect::route('companies.index');
     }
 
     /**
@@ -101,6 +129,7 @@ class CompanyController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Company::findOrFail($id)->delete();
+        return Redirect::route('companies.index');
     }
 }

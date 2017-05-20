@@ -24,3 +24,4 @@ Route::get('demo', function () {
 
 Route::resource('sponsors', 'SponsorController');
 Route::resource('companies', 'CompanyController');
+Route::resource('players', 'PlayerController');
