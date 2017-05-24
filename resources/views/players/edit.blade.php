@@ -16,7 +16,7 @@
 
         <div class="row col-md-12 form-inline">
             <form class="form-inline" action="{{ URL::route('players.update',$player['id']) }}" method="POST">
-                <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                {{--<input type="hidden" id="_token" name="_token" value="{ csrf_token() }">--}}
                 <input type="hidden" name="_method" value="PATCH">
                 <input type="hidden" id="id" name="id" value="{{ $player->id }}">
                 <div class="form-group">
@@ -66,11 +66,11 @@
             <form class="form-inline" name="checkin" action="{{ URL::route('players.checkin',$player['id']) }}" method="POST">
                 @if($player->signature['sig_hash'] === null)
                     <input type="hidden" name="_method" value="POST">
-                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                    {{--<input type="hidden" name="_token" value="{{ csrf_token() }}">--}}
                     <button class="btn btn-primary" onclick="$(this).find('checkin').submit();" disabled="disabled">Checkin</button>
                 @else
                     <input type="hidden" name="_method" value="POST">
-                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                    {{--<input type="hidden" name="_token" value="{{ csrf_token() }}">--}}
                     <button class="btn btn-primary" onclick="$(this).find('checkin').submit();">Checkin</button>
                 @endif
             </form>
@@ -94,6 +94,7 @@
 
 <script type="text/javascript">
     $(function() {
+        $.ajaxSetup({ headers: { 'csrftoken' : '{{ csrf_token() }}' } });
         $('#signature-pad').hide();
         $('#signnow').click(function () {
             $('#signature-pad').show();
