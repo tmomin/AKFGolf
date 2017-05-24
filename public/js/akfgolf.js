@@ -30,7 +30,7 @@ saveButton.addEventListener("click", function (event) {
     if (signaturePad.isEmpty()) {
         alert("Please provide signature first now.");
     } else {
-        //window.open(signaturePad.toDataURL());
+        alert("Signature Submitted");
         $.ajax({
             url : '/players/signature',
             type: 'POST',
