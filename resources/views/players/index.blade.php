@@ -107,7 +107,7 @@
                         <select class="form-control" id="teamId" name="teamId">
                             <option value="" disabled selected>Select Team</option>
                             @foreach($teams as $team)
-                                <option value="{{ $team->id }}">{{ $team->name }}</option>
+                                <option value="{{ $team['id'] }}">{{ $team['name'] }}</option>
                             @endforeach
                         </select>
                     </div>
