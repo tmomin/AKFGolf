@@ -3,8 +3,8 @@
 @section('title', 'Edit Player Info')
 
 @section('content')
-    <link rel="stylesheet" href="http://szimek.github.io/signature_pad/css/signature-pad.css">
-    <link rel="stylesheet" href="../../css/akfgolf.css">
+    <link rel="stylesheet" href="../../css/signature-pad.css">
+    {{--<link rel="stylesheet" href="../../css/akfgolf.css">--}}
 
     <div class="container theme-showcase" role="main">
 
@@ -47,6 +47,7 @@
                     <button id="signnow" class="btn btn-info" type="button">Sign Now</button>
                 @else
                     <button id="signview" class="btn btn-info" type="button">View Sign</button>
+                    <input hidden id="signature" value="{{ $player->signature['signature'] }}">
                 @endif
                 <div class="form-group">
                     <label class="sr-only" for="teamid">Company</label>
@@ -79,9 +80,9 @@
                 <canvas></canvas>
             </div>
             <div class="m-signature-pad--footer">
-                <button type="button" class="button cancel">Cancel</button>
-                <button type="button" class="button clear" data-action="clear">Clear</button>
-                <button type="button" class="button save" data-action="save">Save</button>
+                <button type="button" class="button cancel btn btn-warning" name="cancel">Cancel</button>
+                <button type="button" class="button clear btn btn-danger" data-action="clear" id="clearButton">Clear</button>
+                <button type="button" class="button save btn btn-primary" data-action="save" id="saveButton">Save</button>
             </div>
         </div>
     </div> <!-- /container -->
@@ -102,7 +103,7 @@
             $('#signature-pad').hide();
         })
         $('#signview').click(function () {
-            $('#signature-pad').show();
+            window.open($('#signature').val());
         })
     });
 </script>

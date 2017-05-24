@@ -39,9 +39,6 @@ saveButton.addEventListener("click", function (event) {
             },
             data : {
                 signature: signaturePad.toDataURL('image/png'),
-                //position: $('#position').val()
-                //firstName: $('#firstName').val(),
-                //lastName: $('#lastName').val(),
                 id: $('#id').val()
             },
             success: function(response)
@@ -49,7 +46,7 @@ saveButton.addEventListener("click", function (event) {
                 //sweetAlert("Success!", "Good stuff! Your signature is now saved", "success");
                 setTimeout(function () {
                     location.reload();
-                }, 3000);
+                });
                 //data - response from server
             },
             error: function(response)
