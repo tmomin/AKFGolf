@@ -15,7 +15,7 @@ class CreateSignaturesTable extends Migration
     {
         Schema::create('signatures', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('playerId')->unique();
+            $table->integer('player_id')->unique();
             $table->string('signator');
             $table->text('signature');
             $table->string('sig_hash');
