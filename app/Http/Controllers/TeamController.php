@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Team;
+use App\Player;
+use App\Company;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 
@@ -59,7 +61,11 @@ class TeamController extends Controller
      */
     public function show($id)
     {
-        //
+        $players = Player::Where('teamId', $id)->get();
+        $companies = Company::all();
+        $teams = Team::all();
+
+        return view('teams.show', compact('players', 'companies', 'teams', 'id'));
     }
 
     /**

@@ -39,6 +39,7 @@ saveButton.addEventListener("click", function (event) {
             },
             data : {
                 signature: signaturePad.toDataURL('image/png'),
+                // _token: token.value,
                 id: $('#id').val()
             },
             success: function(response)

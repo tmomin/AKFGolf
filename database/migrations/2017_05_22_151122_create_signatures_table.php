@@ -17,7 +17,7 @@ class CreateSignaturesTable extends Migration
             $table->increments('id');
             $table->integer('player_id')->unique();
             $table->string('signator');
-            $table->text('signature');
+            $table->longText('signature');
             $table->string('sig_hash');
             $table->timestamps();
         });

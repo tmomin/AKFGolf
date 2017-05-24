@@ -16,7 +16,7 @@
 
         <div class="row col-md-12 form-inline">
             <form class="form-inline" action="{{ URL::route('players.update',$player['id']) }}" method="POST">
-                {{--<input type="hidden" id="_token" name="_token" value="{ csrf_token() }">--}}
+                <input type="hidden" name="_token" value="{{ csrf_token() }}">
                 <input type="hidden" name="_method" value="PATCH">
                 <input type="hidden" id="id" name="id" value="{{ $player->id }}">
                 <div class="form-group">
@@ -41,7 +41,7 @@
                 </div>
                 <div class="form-group">
                     <label class="sr-only" for="email">Email</label>
-                    <input type="text" class="form-control" id="email" name="email" placeholder="email" required value="{{ $player->email }}">
+                    <input type="text" class="form-control" id="email" name="email" placeholder="email" value="{{ $player->email }}">
                 </div>
                 @if($player->signature['sig_hash'] === null)
                     <button id="signnow" class="btn btn-info" type="button">Sign Now</button>

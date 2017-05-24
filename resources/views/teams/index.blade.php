@@ -27,7 +27,7 @@
                     @foreach($teams as $team)
                         <tr>
                             {{--<td>{{ $sponsor->id }}</td>--}}
-                            <td>{{ $team->name }}</td>
+                            <td><a href="{{ URL::to('teams', $team->id) }}">{{ $team->name }}</a></td>
                             <td>{{ $team->startingHole }}</td>
                             <td><a href="{{ route('teams.edit', $team->id) }}">Edit</a></td>
                             {{--<td><a href="{{ url('/sponsors', [$sponsor->id]) }}">Edit</a></td>--}}
