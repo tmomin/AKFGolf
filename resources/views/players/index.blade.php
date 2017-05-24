@@ -41,7 +41,7 @@
                             {{--<td>{{ $company->id }}</td>--}}
                             <td>{{ $player->firstName }}</td>
                             <td>{{ $player->lastName }}</td>
-                            <td>{{ $player->company->companyName }}</td>
+                            <td>{{ $player->company['companyName'] }}</td>
                             <td>{{ $player->email }}</td>
                             <td>{{ $player->phone }}</td>
                             {{--<td>{{ $player->signature['sig_hash'] }}</td>--}}
@@ -52,7 +52,7 @@
                                     <input type="checkbox" disabled checked>
                                 @endif
                             </td>
-                            <td>@if($player->teamId == null) @else {{ $player->team->name }} @endif</td>
+                            <td>@if($player->teamId == null) @else {{ $player->team['name'] }} @endif</td>
                             <td><a class="btn btn-info" href="{{ route('players.edit', $player->id) }}">Edit</a></td>
                             <td>
                                 <form action="{{ URL::route('players.destroy',$player['id']) }}" method="POST">
@@ -107,7 +107,7 @@
                         <select class="form-control" id="teamId" name="teamId">
                             <option value="" disabled selected>Select Team</option>
                             @foreach($teams as $team)
-                                <option value="{{ $team['id'] }}">{{ $team['name'] }}</option>
+                                <option value="{{ $team->id }}">{{ $team->name }}</option>
                             @endforeach
                         </select>
                     </div>
