@@ -9,7 +9,7 @@
     <!-- Main jumbotron for a primary marketing message or call to action -->
     <div class="jumbotron">
         <h1>Welcome to AKF Golf 2017</h1>
-        <p>This site is to be used to check players on the of the tournament.</p>
+        <p>This site is to be used to check players on the day of the tournament.</p>
 
         <div class="form-group">
             <form class="form-horizontal" method="get" action="{{ url('/') }}">
@@ -36,6 +36,7 @@
                         <th>Team</th>
                         <th></th>
                         <th></th>
+                        <th></th>
                     </tr>
                     </thead>
                     <tbody>
@@ -48,16 +49,20 @@
                             <td>{{ $result->email }}</td>
                             <td>{{ $result->waiverSign }}</td>
                             <td>@if($result->teamId == null) @else {{ $result->team->name }} @endif</td>
-                            <td><a href="{{ route('players.edit', $result->id) }}">Edit</a></td>
-                            {{--<td><a href="{{ url('/sponsors', [$company->id]) }}">Edit</a></td>--}}
-                            {{--<td><a href="{{ url('/sponsors', [$company->id]) }}" data-method="DELETE" data-confirm="Are you sure?" data-token="{{csrf_token()}}>Delete</a></td>--}}
+                            <td><a class="btn btn-info" href="{{ route('players.edit', $result->id) }}">Edit</a></td>
                             <td>
-                                <a data-method="delete" style="cursor:pointer;" onclick="$(this).find('form').submit();">Delete
-                                    <form action="{{ URL::route('players.destroy',$result['id']) }}" method="POST">
-                                        <input type="hidden" name="_method" value="DELETE">
-                                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                    </form>
-                                </a>
+                                <form action="{{ URL::route('players.destroy',$result['id']) }}" method="POST">
+                                    <input type="hidden" name="_method" value="DELETE">
+                                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                    <button class="btn btn-danger" onclick="$(this).find('form').submit();">Delete</button>
+                                </form>
+                            </td>
+                            <td>
+                                <form action="{{ URL::route('players.checkin',$result['id']) }}" method="POST">
+                                    <input type="hidden" name="_method" value="POST">
+                                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                    <button class="btn btn-primary" onclick="$(this).find('form').submit();">Checkin</button>
+                                </form>
                             </td>
                         </tr>
                     @endforeach

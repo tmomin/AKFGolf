@@ -31,15 +31,17 @@ saveButton.addEventListener("click", function (event) {
         alert("Please provide signature first now.");
     } else {
         //window.open(signaturePad.toDataURL());
-        console.log('else');
         $.ajax({
             url : '/players/signature',
-            type: 'GET',
+            type: 'POST',
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
             data : {
                 signature: signaturePad.toDataURL('image/png'),
                 //position: $('#position').val()
-                firstName: $('#firstName').val(),
-                lastName: $('#lastName').val(),
+                //firstName: $('#firstName').val(),
+                //lastName: $('#lastName').val(),
                 id: $('#id').val()
             },
             success: function(response)

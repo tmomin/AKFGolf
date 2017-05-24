@@ -3,6 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="csrf-token" content="{{ csrf_token() }}" />
     <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no">
 
     <meta name="apple-mobile-web-app-capable" content="yes">
@@ -54,8 +55,8 @@
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
                 <li class="{{ Request::is('/') ? 'active' : '' }}"><a href="/">Home</a></li>
-                <li class="{{ Request::is('checkin') ? 'active' : '' }}"><a href="checkin">Check-In</a></li>
-                <li class="{{ Request::is('help') ? 'active' : '' }}"><a href="#">Contact</a></li>
+                <li class="{{ Request::is('players') ? 'active' : '' }}"><a href="/players">Players</a></li>
+                <li class="{{ Request::is('companies') ? 'active' : '' }}"><a href="/companies">Companies</a></li>
             </ul>
         </div><!--/.nav-collapse -->
     </div>

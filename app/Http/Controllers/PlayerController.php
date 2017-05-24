@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use App\Company;
 use App\Player;
 use App\Team;
+use App\Signature;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Storage;
@@ -60,7 +62,8 @@ class PlayerController extends Controller
             return Redirect::route('players.index');
         }
 
-        return Redirect::route('players.index');
+        //return Redirect::route('players.index');
+        return back();
     }
 
     /**
@@ -123,26 +126,49 @@ class PlayerController extends Controller
     public function destroy($id)
     {
         Player::findOrFail($id)->delete();
-        return Redirect::route('players.index');
+//        return Redirect::route('players.index');
+        return back();
     }
 
-    public function saveSignature(Redirect $request)
+    public function saveSignature(Request $request)
     {
-//        $player = Player::findOrFail($request->id);
-//
-//        $data_uri = $request->signature;
-//        $encoded_image = explode(",", $data_uri)[1];
-//
-//        $sig = sha1($request->firstName.$request->lastName). "_signature.png";
-//        $folder = '/uploads/signatures/';
-//
-//        Storage::put($folder, $sig);
-//
-//        $player->waiverSign = $encoded_image;
-//        $player->save();
-//
-//        return back();
+        $player = Player::findOrFail($request->id);
+        $signature = new Signature();
 
-        return ('Save Signature');
+        $data_uri = $request->signature;
+//        $encoded_image = explode(",", $data_uri)[1];
+//        $decoded_image = base64_decode($encoded_image);
+
+        $sig_hash = sha1($data_uri);
+        $signature->player_id = $player->id;
+        $signature->signator = $player->firstName . " " . $player->lastName;
+        $signature->signature = $data_uri;
+        $signature->sig_hash = $sig_hash;
+        $signature->save();
+
+//        $url = 'Signature' . '-' . $player->id . '-' . $player->firstName . '-' . $player->lastName .'-' . rand(111,9999).'.png';
+
+//        $name = 'ID' . $player->id . '-Rand-' . rand(111,9999) . '-' . rand(111,9999) . '-' . rand(111,9999);
+//        $player_id = $player->id;
+//
+//        $data=array(
+//            'user_id' => $player_id,
+//            'name' => $name,
+//            'url' => $url,
+//        );
+
+//        file_put_contents('../storage/app/signatures/' . $url, $decoded_image);
+
+
+//        $player->waiverSign = $url;
+//        $player->waiverTime = \DateTime::createFromFormat();
+//        $player->save();
+
+        return back();
+    }
+
+    public function checkin()
+    {
+        return "checked";
     }
 }

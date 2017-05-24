@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Company;
 use App\Player;
 use App\Sponsor;
+use App\Team;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Database\QueryException;
@@ -19,7 +20,7 @@ class CompanyController extends Controller
      */
     public function index()
     {
-        $companies = Company::all();
+        $companies = Company::all()->sortBy('companyName');
         $sponsors = Sponsor::all();
 
         return view('companies.index', compact('companies', 'sponsors'));
@@ -47,7 +48,6 @@ class CompanyController extends Controller
     {
         try {
             $company = new Company();
-//            $player = new Player();
             $company->companyName = $request->companyName;
             $company->sponsorId = $request->sponsorshipLevel;
             $company->save();
@@ -56,21 +56,6 @@ class CompanyController extends Controller
             return Redirect::route('companies.index');
         }
 
-//        $numOfGolfPlayers = Sponsor::findOrFail($request->sponsorshipLevel)->numOfGolfPlayers;
-//        $numOfAwardTickets = Sponsor::findOrFail($request->sponsorshipLevel)->numOfAwardTickets;
-
-//        if ($numOfGolfPlayers > 0) {
-//            for($i=1; $i<=$numOfGolfPlayers; $i++) {
-//                $data[] = new Player(array(
-//                    'firstName'=>'Player',
-//                    'lastName'=>'Name',
-//                    'companyId'=>1,
-//                    'email'=>'email@me.com',
-//                ));
-//            }
-//            Log::info($data);
-//            Player::create($data);
-//        }
         return Redirect::route('companies.index');
     }
 
@@ -82,7 +67,11 @@ class CompanyController extends Controller
      */
     public function show($id)
     {
-        //
+        $players = Player::Where('companyId', $id)->get();
+        $companies = Company::all();
+        $teams = Team::all();
+
+        return view('companies.show', compact('players', 'companies', 'teams', 'id'));
     }
 
     /**

@@ -1,0 +1,9 @@
+.m-signature-pad--footer
+.button.cancel {
+    height:20px;
+    width:50px;
+    margin: -20px -25px;
+    position:relative;
+    top:100%;
+    left:50%;
+}

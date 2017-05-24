@@ -4,27 +4,17 @@
 
 @section('content')
     <link rel="stylesheet" href="http://szimek.github.io/signature_pad/css/signature-pad.css">
-    <style>
-        .m-signature-pad--footer
-        .button.cancel {
-            height:20px;
-            width:50px;
-            margin: -20px -25px;
-            position:relative;
-            top:100%;
-            left:50%;
-        }
-    </style>
+    <link rel="stylesheet" href="../../css/akfgolf.css">
 
     <div class="container theme-showcase" role="main">
 
         <!-- Main jumbotron for a primary marketing message or call to action -->
         <div class="jumbotron">
-            <h2>Add New Company</h2>
+            <h2>Edit Player Info</h2>
             <p>This site is to be used to check players on the of the tournament.</p>
         </div>
 
-        <div class="row col-md-11 col-md-offset-2">
+        <div class="row col-md-12 form-inline">
             <form class="form-inline" action="{{ URL::route('players.update',$player['id']) }}" method="POST">
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                 <input type="hidden" name="_method" value="PATCH">
@@ -53,7 +43,11 @@
                     <label class="sr-only" for="email">Email</label>
                     <input type="text" class="form-control" id="email" name="email" placeholder="email" required value="{{ $player->email }}">
                 </div>
-                <button id="signnow" class="btn btn-info" type="button">Sign Now</button>
+                @if($player->signature['sig_hash'] === null)
+                    <button id="signnow" class="btn btn-info" type="button">Sign Now</button>
+                @else
+                    <button id="signnow" class="btn btn-info" type="button" disabled>Signed</button>
+                @endif
                 <div class="form-group">
                     <label class="sr-only" for="teamid">Company</label>
                     <select class="form-control" id="teamId" name="teamId" required>
@@ -67,6 +61,17 @@
                     </select>
                 </div>
                 <button type="submit" class="btn btn-primary">Update Player</button>
+            </form>
+            <form class="form-inline" name="checkin" action="{{ URL::route('players.checkin',$player['id']) }}" method="POST">
+                @if($player->signature['sig_hash'] === null)
+                    <input type="hidden" name="_method" value="POST">
+                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                    <button class="btn btn-primary" onclick="$(this).find('checkin').submit();" disabled="disabled">Checkin</button>
+                @else
+                    <input type="hidden" name="_method" value="POST">
+                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                    <button class="btn btn-primary" onclick="$(this).find('checkin').submit();">Checkin</button>
+                @endif
             </form>
         </div>
         <div id="signature-pad" class="m-signature-pad">

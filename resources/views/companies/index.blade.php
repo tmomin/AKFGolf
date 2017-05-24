@@ -32,7 +32,7 @@
                     @foreach($companies as $company)
                         <tr>
                             {{--<td>{{ $company->id }}</td>--}}
-                            <td>{{ $company->companyName }}</td>
+                            <td><a href="{{ URL::to('companies', $company->id) }}">{{ $company->companyName }}</a></td>
                             <td>{{ $company->sponsor->name }}</td>
                             <td><a href="{{ route('companies.edit', $company->id) }}">Edit</a></td>
                             {{--<td><a href="{{ url('/sponsors', [$company->id]) }}">Edit</a></td>--}}
@@ -61,7 +61,7 @@
                         <label class="sr-only" for="sponsorshipLevel">Sponsorship Level</label>
                         <select class="form-control" id="sponsorshipLevel" name="sponsorshipLevel" required>
                             @foreach($sponsors as $sponsor)
-                                <option value="{{ $sponsor->id }}">{{ $sponsor->name }}</option>
+                                <option value="{{ $sponsor->id }}">{{ $sponsor->name }}  -  ${{ $sponsor->dollarAmount }}</option>
                             @endforeach
                         </select>
                     </div>

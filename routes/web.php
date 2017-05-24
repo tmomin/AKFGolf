@@ -25,6 +25,7 @@ Route::resource('/', 'AKFGolfController');
 Route::resource('sponsors', 'SponsorController');
 Route::resource('companies', 'CompanyController');
 
-Route::get('players/signature', 'PlayerController@saveSignature');
+Route::post('players/checkin', 'PlayerController@checkin')->name('players.checkin');
+Route::post('players/signature', 'PlayerController@saveSignature');
 Route::resource('players', 'PlayerController');
 Route::resource('teams', 'TeamController');
