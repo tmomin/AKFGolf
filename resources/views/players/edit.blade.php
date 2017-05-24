@@ -46,7 +46,7 @@
                 @if($player->signature['sig_hash'] === null)
                     <button id="signnow" class="btn btn-info" type="button">Sign Now</button>
                 @else
-                    <button id="signnow" class="btn btn-info" type="button" disabled>Signed</button>
+                    <button id="signview" class="btn btn-info" type="button">View Sign</button>
                 @endif
                 <div class="form-group">
                     <label class="sr-only" for="teamid">Company</label>
@@ -100,6 +100,9 @@
         })
         $('.cancel').click(function () {
             $('#signature-pad').hide();
+        })
+        $('#signview').click(function () {
+            $('#signature-pad').show();
         })
     });
 </script>
