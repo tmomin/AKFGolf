@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Player;
 use App\Company;
+use App\Award;
 use Illuminate\Http\Request;
 
 class AwardController extends Controller
@@ -89,6 +90,11 @@ class AwardController extends Controller
 
     public function checkin($id)
     {
-        return "checkin";
+        $award = new Award();
+        $award->player_id = $id;
+        $award->checkin = true;
+        $award->save();
+
+        return view('checkin', compact('award'));
     }
 }
