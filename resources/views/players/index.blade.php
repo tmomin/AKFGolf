@@ -68,9 +68,13 @@
                                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                     <button class="btn btn-primary" onclick="$(this).find('form').submit();" disabled="disabled">Checkin</button>
                                 @else
-                                    <input type="hidden" name="_method" value="POST">
-                                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                    <button class="btn btn-primary" onclick="$(this).find('form').submit();">Checkin</button>
+                                    @if($player->checkin == true)
+                                        <button class="btn btn-primary" disabled="disabled">Checked-In</button>
+                                    @else
+                                        <input type="hidden" name="_method" value="POST">
+                                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                        <button class="btn btn-primary" onclick="$(this).find('form').submit();">Checkin</button>
+                                    @endif
                                 @endif
                                 </form>
                             </td>
