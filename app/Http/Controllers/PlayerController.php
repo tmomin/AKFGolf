@@ -55,6 +55,7 @@ class PlayerController extends Controller
             $player->lastName = $request->lastName;
             $player->companyId = $request->companyId;
             $player->email = $request->email;
+            $player->phone = $request->phone;
             $player->teamId = $request->teamId;
             $player->save();
         } catch (QueryException $e) {
@@ -107,6 +108,7 @@ class PlayerController extends Controller
             $player->lastName = $request->lastName;
             $player->companyId = $request->companyId;
             $player->email = $request->email;
+            $player->phone = $request->phone;
             $player->teamId = $request->teamId;
             $player->save();
         } catch (QueryException $e) {
@@ -167,8 +169,13 @@ class PlayerController extends Controller
         return back();
     }
 
-    public function checkin()
+    public function checkin(Request $request)
     {
-        return "checked";
+//        $player = Player::findOrFail($id);
+//        $player->checkin = true;
+//        $player->checkinTime = date_timestamp_set();
+//        $player->save();
+
+        return $request->id;
     }
 }
