@@ -20,7 +20,7 @@
                         <th>Name</th>
                         <th>Starting Hole</th>
                         <th></th>
-                        <th></th>
+                        {{--<th></th>--}}
                     </tr>
                     </thead>
                     <tbody>
@@ -29,17 +29,17 @@
                             {{--<td>{{ $sponsor->id }}</td>--}}
                             <td><a href="{{ URL::to('teams', $team->id) }}">{{ $team->name }}</a></td>
                             <td>{{ $team->startingHole }}</td>
-                            <td><a href="{{ route('teams.edit', $team->id) }}">Edit</a></td>
+                            <td><a href="{{ route('teams.edit', $team->id) }}" class="btn btn-info">Edit</a></td>
                             {{--<td><a href="{{ url('/sponsors', [$sponsor->id]) }}">Edit</a></td>--}}
                             {{--<td><a href="{{ url('/sponsors', [$sponsor->id]) }}" data-method="DELETE" data-confirm="Are you sure?" data-token="{{csrf_token()}}>Delete</a></td>--}}
-                            <td>
-                                <a data-method="delete" style="cursor:pointer;" onclick="$(this).find('form').submit();">Delete
-                                    <form action="{{ URL::route('teams.destroy',$team['id']) }}" method="POST">
-                                        <input type="hidden" name="_method" value="DELETE">
-                                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                    </form>
-                                </a>
-                            </td>
+                            {{--<td>--}}
+                                {{--<a data-method="delete" style="cursor:pointer;" onclick="$(this).find('form').submit();">Delete--}}
+                                    {{--<form action="{{ URL::route('teams.destroy',$team['id']) }}" method="POST">--}}
+                                        {{--<input type="hidden" name="_method" value="DELETE">--}}
+                                        {{--<input type="hidden" name="_token" value="{{ csrf_token() }}">--}}
+                                    {{--</form>--}}
+                                {{--</a>--}}
+                            {{--</td>--}}
                         </tr>
                     @endforeach
                     </tbody>
