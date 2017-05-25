@@ -171,7 +171,7 @@ class PlayerController extends Controller
 
     public function checkin($id)
     {
-        player = Player::findOrFail($id);
+        $player = Player::findOrFail($id);
         $player->checkin = true;
         $player->checkinTime = date_timestamp_set();
         $player->save();$
