@@ -8,7 +8,7 @@
 
         <!-- Main jumbotron for a primary marketing message or call to action -->
         <div class="jumbotron">
-            <h1>Add a new team</h1>
+            <h1>Update Team Info</h1>
             <p>This site is to be used to check players on the of the tournament.</p>
         </div>
 
@@ -24,13 +24,10 @@
                     <label class="sr-only" for="startingHole"># of Golf Players</label>
                     <input type="text" class="form-control" id="startingHole" name="startingHole" placeholder="Starting Hole" value="{{ $team->startingHole }}">
                 </div>
-                <button type="submit" class="btn btn-primary">Edit Team</button>
+                <button type="submit" class="btn btn-primary">Update Team</button>
             </form>
         </div>
 
     </div> <!-- /container -->
 
 @endsection
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/signature_pad/1.5.3/signature_pad.min.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
