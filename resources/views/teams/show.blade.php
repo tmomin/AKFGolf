@@ -13,11 +13,11 @@
         <!-- Main jumbotron for a primary marketing message or call to action -->
         <div class="jumbotron">
             <h1>Team {{ $player->team->name }}</h1>
-            <p>Starting at Hole: {{ $player->team->startingHole }}</p>
+            <p>This site is to be used to check players on the of the tournament.</p>
         </div>
 
         <div class="row">
-            <div class="col-md-0 col-md-offset-0">
+            <div class="col-md-8 col-md-offset-2">
                 <table class="table table-striped table-hover">
                     <thead>
                     <tr>
@@ -26,11 +26,9 @@
                         <th>Last Name</th>
                         <th>Company</th>
                         <th>Email</th>
-                        <th>Phone</th>
-                        <th>Waiver</th>
+                        <th>Waiver Signed</th>
                         <th>Team</th>
                         <th></th>
-                        {{--<th></th>--}}
                         <th></th>
                     </tr>
                     </thead>
@@ -40,49 +38,65 @@
                             {{--<td>{{ $company->id }}</td>--}}
                             <td>{{ $player->firstName }}</td>
                             <td>{{ $player->lastName }}</td>
-                            <td>{{ $player->company['companyName'] }}</td>
+                            <td>{{ $player->company->companyName }}</td>
                             <td>{{ $player->email }}</td>
-                            <td>{{ $player->phone }}</td>
-                            {{--<td>{{ $player->signature['sig_hash'] }}</td>--}}
+                            <td>{{ $player->waiverSign }}</td>
+                            <td>@if($player->teamId == null) @else {{ $player->team->name }} @endif</td>
+                            <td><a href="{{ route('players.edit', $player->id) }}">Edit</a></td>
+                            {{--<td><a href="{{ url('/sponsors', [$company->id]) }}">Edit</a></td>--}}
+                            {{--<td><a href="{{ url('/sponsors', [$company->id]) }}" data-method="DELETE" data-confirm="Are you sure?" data-token="{{csrf_token()}}>Delete</a></td>--}}
                             <td>
-                                @if($player->signature['sig_hash'] === null)
-                                    <input type="checkbox" disabled>
-                                @else
-                                    <input type="checkbox" disabled checked>
-                                @endif
-                            </td>
-                            <td>@if($player->teamId == null) @else <a href="{{ URL::to('teams', $player->team['id']) }}">{{ $player->team['name'] }}</a> @endif</td>
-                            <td><a class="btn btn-info" href="{{ route('players.edit', $player->id) }}">Edit</a></td>
-                            {{--<td>--}}
-                            {{--<form action="{{ URL::route('players.destroy',$player['id']) }}" method="POST">--}}
-                            {{--<input type="hidden" name="_method" value="DELETE">--}}
-                            {{--<input type="hidden" name="_token" value="{{ csrf_token() }}">--}}
-                            {{--<button class="btn btn-danger" onclick="$(this).find('form').submit();">Delete</button>--}}
-                            {{--</form>--}}
-                            {{--</td>--}}
-                            <td>
-                                <form action="{{ URL::route('players.checkin',$player['id']) }}" method="POST">
-                                    @if($player->signature['sig_hash'] === null)
-                                        <input type="hidden" name="_method" value="POST">
+                                <a data-method="delete" style="cursor:pointer;" onclick="$(this).find('form').submit();">Delete
+                                    <form action="{{ URL::route('players.destroy',$player['id']) }}" method="POST">
+                                        <input type="hidden" name="_method" value="DELETE">
                                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                        <button class="btn btn-primary" onclick="$(this).find('form').submit();" disabled="disabled">Checkin</button>
-                                    @else
-                                        @if($player->checkin == true)
-                                            <button class="btn btn-primary" disabled="disabled">Checked-In</button>
-                                        @else
-                                            <input type="hidden" name="_method" value="POST">
-                                            <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                            <button class="btn btn-primary" onclick="$(this).find('form').submit();">Checkin</button>
-                                        @endif
-                                    @endif
-                                </form>
+                                    </form>
+                                </a>
                             </td>
                         </tr>
                     @endforeach
                     </tbody>
                 </table>
             </div>
-            @include('partials.addplayer')
+            <div class="row col-md-11 col-md-offset-2">
+                <form class="form-inline" method="post" action="{{ url('/players') }}">
+                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                    <div class="form-group">
+                        <label class="sr-only" for="firstName">First Name</label>
+                        <input type="text" class="form-control" id="firstName" name="firstName" placeholder="First Name" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="sr-only" for="lastName">Last Name</label>
+                        <input type="text" class="form-control" id="lastName" name="lastName" placeholder="Last Name" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="sr-only" for="companyId">Company</label>
+                        <select class="form-control" id="companyId" name="companyId" required>
+                            @foreach($companies as $company)
+                                @if($company->id == $id)
+                                    <option selected value="{{ $company->id }}">{{ $company->companyName }}</option>
+                                @else
+                                    <option value="{{ $company->id }}">{{ $company->companyName }}</option>
+                                @endif
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="sr-only" for="email">Email</label>
+                        <input type="text" class="form-control" id="email" name="email" placeholder="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="sr-only" for="teamid">Team</label>
+                        <select class="form-control" id="teamId" name="teamId">
+                            <option></option>
+                            @foreach($teams as $team)
+                                <option value="{{ $team->id }}">{{ $team->name }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Add Player</button>
+                </form>
+            </div>
         </div>
 
     </div> <!-- /container -->
