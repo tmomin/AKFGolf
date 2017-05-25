@@ -41,7 +41,7 @@
                             {{--<td>{{ $company->id }}</td>--}}
                             <td>{{ $player->firstName }}</td>
                             <td>{{ $player->lastName }}</td>
-                            <td>{{ $player->company['companyName'] }}</td>
+                            <td><a href="{{ URL::to('companies', $player->company['id']) }}">{{ $player->company['companyName'] }}</a></td>
                             <td>{{ $player->email }}</td>
                             <td>{{ $player->phone }}</td>
                             {{--<td>{{ $player->signature['sig_hash'] }}</td>--}}
