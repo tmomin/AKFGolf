@@ -28,8 +28,8 @@
                         <th>Company</th>
                         <th>Email</th>
                         <th>Phone</th>
-                        <th>Waiver</th>
-                        <th>Team</th>
+                        {{--<th>Waiver</th>--}}
+                        {{--<th>Team</th>--}}
                         <th></th>
                         {{--<th></th>--}}
                         <th></th>
