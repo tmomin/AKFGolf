@@ -57,6 +57,7 @@
                 <li class="{{ Request::is('/') ? 'active' : '' }}"><a href="/">Home</a></li>
                 <li class="{{ Request::is('players') ? 'active' : '' }}"><a href="/players">Players</a></li>
                 <li class="{{ Request::is('companies') ? 'active' : '' }}"><a href="/companies">Companies</a></li>
+                <li class="{{ Request::is('awards') ? 'active' : '' }}"><a href="/awards">Awards</a></li>
             </ul>
         </div><!--/.nav-collapse -->
     </div>
