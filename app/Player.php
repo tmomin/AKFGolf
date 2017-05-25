@@ -24,4 +24,9 @@ class Player extends Model
     {
         return $this->hasOne('App\Signature');
     }
+
+    public function award()
+    {
+        return $this->hasOne('App\Award');
+    }
 }
