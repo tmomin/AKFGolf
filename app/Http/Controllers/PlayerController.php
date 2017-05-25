@@ -173,7 +173,7 @@ class PlayerController extends Controller
     {
         $player = Player::findOrFail($id);
         $player->checkin = true;
-        $player->checkinTime = time();
+        $player->checkinTime = \Carbon\Carbon::now();
         $player->save();
 
         return $player->team->startingHole;
