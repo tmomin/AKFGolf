@@ -63,7 +63,7 @@
                             {{--</td>--}}
                             <td>
                                 <form action="{{ URL::route('awards.checkin',$player['id']) }}" method="POST">
-                                    @if($player->award->checkin == true)
+                                    @if($player->award->['checkin'] == true)
                                         <button class="btn btn-primary" disabled="disabled">Checked-In</button>
                                     @else
                                         <a href="{{ URL::to('awards/checkin/' . $player['id']) }}" class="btn btn-primary">Checkin</a>
