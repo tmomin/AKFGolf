@@ -15,7 +15,7 @@ class CreateAwardsTable extends Migration
     {
         Schema::create('awards', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('playerId');
+            $table->integer('playerId')->unique();
             $table->boolean('checkin');
             $table->timestamps();
         });
