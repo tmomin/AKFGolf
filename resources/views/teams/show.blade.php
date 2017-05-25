@@ -12,8 +12,8 @@
 
         <!-- Main jumbotron for a primary marketing message or call to action -->
         <div class="jumbotron">
-            <h1>Team {{ $player->team->name }}</h1>
-            <p>This site is to be used to check players on the of the tournament.</p>
+            <h1>Team {{ $teams->find($id)->name }}</h1>
+            <p>Starting at hole: {{ $teams->find($id)->startingHole }}</p>
         </div>
 
         <div class="row">
