@@ -21,7 +21,7 @@ class PlayerController extends Controller
      */
     public function index()
     {
-        $players = Player::all();
+        $players = Player::all()->sortBy('firstName');
         $companies = Company::all();
         $teams = Team::all();
 
