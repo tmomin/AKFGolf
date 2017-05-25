@@ -30,4 +30,5 @@ Route::post('players/signature', 'PlayerController@saveSignature');
 Route::resource('players', 'PlayerController');
 Route::resource('teams', 'TeamController');
 
+Route::get('awards/checkin/{player}', 'AwardController@checkin')->name('awards.checkin');
 Route::resource('awards', 'AwardController');

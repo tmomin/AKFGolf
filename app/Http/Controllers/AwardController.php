@@ -86,4 +86,9 @@ class AwardController extends Controller
     {
         //
     }
+
+    public function checkin($id)
+    {
+        return "checkin";
+    }
 }
