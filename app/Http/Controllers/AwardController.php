@@ -94,7 +94,8 @@ class AwardController extends Controller
         $award->player_id = $id;
         $award->checkin = true;
         $award->save();
+        $player = Player::find($id);
 
-        return view('checkin', compact('award'));
+        return view('checkin', compact('player'));
     }
 }
