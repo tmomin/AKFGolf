@@ -174,7 +174,7 @@ class PlayerController extends Controller
         $player = Player::findOrFail($id);
         $player->checkin = true;
         $player->checkinTime = date_timestamp_set();
-        $player->save();$
+        $player->save();
 
         return $player->team->startingHole;
     }
