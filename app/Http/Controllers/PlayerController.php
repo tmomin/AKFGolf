@@ -176,6 +176,6 @@ class PlayerController extends Controller
         $player->checkinTime = \Carbon\Carbon::now();
         $player->save();
 
-        return view('checkin.blade.php', compact('player'));
+        return view('checkin', compact('player'));
     }
 }
