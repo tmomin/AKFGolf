@@ -169,13 +169,13 @@ class PlayerController extends Controller
         return back();
     }
 
-    public function checkin(Request $request)
+    public function checkin($id)
     {
 //        $player = Player::findOrFail($id);
 //        $player->checkin = true;
 //        $player->checkinTime = date_timestamp_set();
 //        $player->save();
 
-        return $request->id;
+        return $id;
     }
 }
