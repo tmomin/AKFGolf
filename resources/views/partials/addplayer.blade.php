@@ -12,6 +12,7 @@
         <div class="form-group">
             <label class="sr-only" for="companyId">Company</label>
             <select class="form-control" id="companyId" name="companyId" required>
+                <option value="" disabled selected>Select Company</option>
                 @foreach($companies as $company)
                     <option value="{{ $company->id }}">{{ $company->companyName }}</option>
                 @endforeach
