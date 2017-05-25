@@ -43,6 +43,10 @@
                     <label class="sr-only" for="email">Email</label>
                     <input type="text" class="form-control" id="email" name="email" placeholder="email" value="{{ $player->email }}">
                 </div>
+                <div class="form-group">
+                    <label class="sr-only" for="phone">Phone</label>
+                    <input type="text" class="form-control" id="phone" name="phone" placeholder="phone" value="{{ $player->phone }}">
+                </div>
                 @if($player->signature['sig_hash'] === null)
                     <button id="signnow" class="btn btn-info" type="button">Sign Now</button>
                 @else
@@ -50,7 +54,7 @@
                     <input hidden id="signature" value="{{ $player->signature['signature'] }}">
                 @endif
                 <div class="form-group">
-                    <label class="sr-only" for="teamid">Company</label>
+                    <label class="sr-only" for="teamid">Team</label>
                     <select class="form-control" id="teamId" name="teamId" required>
                         @foreach($teams as $team)
                             @if($team->id == $player->teamId)
