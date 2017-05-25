@@ -176,8 +176,6 @@ class PlayerController extends Controller
         $player->checkinTime = \Carbon\Carbon::now();
         $player->save();
 
-        $player = Player::findOrFail($id);
-
         return view('checkin', compact('player'));
     }
 }
