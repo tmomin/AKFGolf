@@ -58,7 +58,7 @@
                     </tbody>
                 </table>
             </div>
-            <div class="row col-md-11 col-md-offset-2">
+            <div class="row col-md-12 col-md-offset-0">
                 <form class="form-inline" method="post" action="{{ url('/players') }}">
                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
                     <div class="form-group">
@@ -83,7 +83,11 @@
                     </div>
                     <div class="form-group">
                         <label class="sr-only" for="email">Email</label>
-                        <input type="text" class="form-control" id="email" name="email" placeholder="email" required>
+                        <input type="text" class="form-control" id="email" name="email" placeholder="email">
+                    </div>
+                    <div class="form-group">
+                        <label class="sr-only" for="email">Phone</label>
+                        <input type="text" class="form-control" id="phone" name="phone" placeholder="phone">
                     </div>
                     <div class="form-group">
                         <label class="sr-only" for="teamid">Team</label>

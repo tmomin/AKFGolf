@@ -21,6 +21,7 @@ class CreatePlayersTable extends Migration
             $table->string('email')->nullable();
             $table->string('phone')->nullable();
             $table->integer('teamId')->nullable();
+            $table->boolean('checkin')->nullable();
             $table->dateTime('checkinTime')->nullable();
             $table->timestamps();
         });

@@ -62,18 +62,31 @@
                     </select>
                 </div>
                 <button type="submit" class="btn btn-primary">Update Player</button>
-            </form>
-            <form class="form-inline" name="checkin" action="{{ URL::route('players.checkin',$player['id']) }}" method="POST">
                 @if($player->signature['sig_hash'] === null)
-                    <input type="hidden" name="_method" value="POST">
+                    <a href="{{ URL::to('players/checkin/' . $player['id']) }}" class="btn btn-primary" disabled>Checkin</a>
+                    {{--<input type="hidden" name="_method" value="POST">--}}
                     {{--<input type="hidden" name="_token" value="{{ csrf_token() }}">--}}
-                    <button class="btn btn-primary" onclick="$(this).find('checkin').submit();" disabled="disabled">Checkin</button>
+                    {{--<button class="btn btn-primary" onclick="$(this).find('checkin').submit();" disabled="disabled">Checkin</button>--}}
                 @else
-                    <input type="hidden" name="_method" value="POST">
+                    <a href="{{ URL::to('players/checkin/' . $player['id']) }}" class="btn btn-primary">Checkin</a>
+                    {{--<input type="hidden" name="_method" value="POST">--}}
                     {{--<input type="hidden" name="_token" value="{{ csrf_token() }}">--}}
-                    <button class="btn btn-primary" onclick="$(this).find('checkin').submit();">Checkin</button>
+                    {{--<button class="btn btn-primary" onclick="$(this).find('checkin').submit();">Checkin</button>--}}
                 @endif
             </form>
+            {{--<form class="form-inline" name="checkin" action="{{ URL::route('players.checkin',$player['id']) }}" method="POST">--}}
+                {{--@if($player->signature['sig_hash'] === null)--}}
+                    {{--<a href="{{ URL::to('players/checkin/' . $player['id']) }}" class="btn btn-primary" disabled>Checkin</a>--}}
+                    {{--<input type="hidden" name="_method" value="POST">--}}
+                    {{--<input type="hidden" name="_token" value="{{ csrf_token() }}">--}}
+                    {{--<button class="btn btn-primary" onclick="$(this).find('checkin').submit();" disabled="disabled">Checkin</button>--}}
+                {{--@else--}}
+                    {{--<a href="{{ URL::to('players/checkin/' . $player['id']) }}" class="btn btn-primary">Checkin</a>--}}
+                    {{--<input type="hidden" name="_method" value="POST">--}}
+                    {{--<input type="hidden" name="_token" value="{{ csrf_token() }}">--}}
+                    {{--<button class="btn btn-primary" onclick="$(this).find('checkin').submit();">Checkin</button>--}}
+                {{--@endif--}}
+            {{--</form>--}}
         </div>
         <div id="signature-pad" class="m-signature-pad">
             <div class="m-signature-pad--body">

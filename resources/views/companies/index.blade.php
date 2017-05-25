@@ -21,30 +21,30 @@
                 <table class="table table-striped table-hover">
                     <thead>
                     <tr>
-                        {{--<th>#</th>--}}
+                        <th>#</th>
                         <th>Company Name</th>
                         <th>Sponsorship Level</th>
                         <th></th>
-                        <th></th>
+                        {{--<th></th>--}}
                     </tr>
                     </thead>
                     <tbody>
                     @foreach($companies as $company)
                         <tr>
-                            {{--<td>{{ $company->id }}</td>--}}
+                            <td>{{ $company->id }}</td>
                             <td><a href="{{ URL::to('companies', $company->id) }}">{{ $company->companyName }}</a></td>
-                            <td>{{ $company->sponsor->name }}</td>
-                            <td><a href="{{ route('companies.edit', $company->id) }}">Edit</a></td>
+                            <td>{{ $company->sponsor['name'] }}</td>
+                            <td><a href="{{ route('companies.edit', $company->id) }}" class="btn btn-info">Edit</a></td>
                             {{--<td><a href="{{ url('/sponsors', [$company->id]) }}">Edit</a></td>--}}
                             {{--<td><a href="{{ url('/sponsors', [$company->id]) }}" data-method="DELETE" data-confirm="Are you sure?" data-token="{{csrf_token()}}>Delete</a></td>--}}
-                            <td>
-                                <a data-method="delete" style="cursor:pointer;" onclick="$(this).find('form').submit();">Delete
-                                    <form action="{{ URL::route('companies.destroy',$company['id']) }}" method="POST">
-                                        <input type="hidden" name="_method" value="DELETE">
-                                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                    </form>
-                                </a>
-                            </td>
+                            {{--<td>--}}
+                                {{--<a data-method="delete" style="cursor:pointer;" onclick="$(this).find('form').submit();">Delete--}}
+                                    {{--<form action="{{ URL::route('companies.destroy',$company['id']) }}" method="POST">--}}
+                                        {{--<input type="hidden" name="_method" value="DELETE">--}}
+                                        {{--<input type="hidden" name="_token" value="{{ csrf_token() }}">--}}
+                                    {{--</form>--}}
+                                {{--</a>--}}
+                            {{--</td>--}}
                         </tr>
                     @endforeach
                     </tbody>
@@ -73,6 +73,3 @@
     </div> <!-- /container -->
 
 @endsection
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/signature_pad/1.5.3/signature_pad.min.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
